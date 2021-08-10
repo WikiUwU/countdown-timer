@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    height: 300px;
+    width: 100%;
+    text-align: center;
+}
+
+h1{
+    width: 100%;
+    font-size: 4.5rem;
+    margin: 0 auto;
+}
+
+p{
+    font-size: 1.25rem;
+}
+
+.timer-button{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 8px;
+}
+
+.timer-button:last-child{
+    margin-right: 0;
+}
+
