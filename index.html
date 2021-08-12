@@ -8,27 +8,25 @@
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
 </head>
 <body>
-    
+
     <div class="container">
 
+        <h1>Simple Pomodoro Timer</h1>
+
         <div class="display">
-            <h1 id="display-timer">00:00</h1>
-            <p id="display-timer-end">Timer Will End At 0:00</p>
+            <h1 id="display-timer">25:00</h1>
+            <audio id="clickSound" src="button-click.mp3"></audio>
+            <audio id="bellSound" src="https://soundbible.com/mp3/service-bell_daniel_simion.mp3"></audio>
         </div>
+
+        <button id="start-stop">Start</button>
     
-        <button class="timer-button" value="20">20 Secs</button>
-        <button class="timer-button" value="900">Quick 15mins</button>
-        <button class="timer-button" value="3600">Lunch Break</button>
-    
-        <form name="customForm" id="custom">
-            <input type="text" id="custom-time" name="minutes" placeholder="Enter Minutes">
-        </form>
+        <button class="timer-button" value="1500">Work</button>
+        <button class="timer-button" value="300">Short Break</button>
+        <button class="timer-button" value="900">Long Break</button>
 
     </div>
-
     
-    
-
     <script src='app.js'></script>
 </body>
 </html> 

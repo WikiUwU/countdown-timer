@@ -11,13 +11,19 @@
 }
 
 h1{
+    margin-bottom: 0.5rem;
+}
+
+#display-timer{
     width: 100%;
     font-size: 4.5rem;
     margin: 0 auto;
 }
 
-p{
-    font-size: 1.25rem;
+#start-stop{
+    display: block;
+    padding: 4px 12px;
+    margin: 10px auto;
 }
 
 .timer-button{
@@ -29,4 +35,3 @@ p{
 .timer-button:last-child{
     margin-right: 0;
 }
-
