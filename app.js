@@ -2,6 +2,10 @@ let countdown;
 let status = "stopped";
 let time = 1500;
 let resumeTime;
+
+let cycles = 0;
+let session = "work"
+
 const displayTimer = document.querySelector("#display-timer");
 const displayTimerEnd = document.querySelector("#display-timer-end");
 const buttons = document.querySelectorAll(".timer-button");
@@ -25,14 +29,52 @@ function timer(seconds) {
         resumeTime = secondsLeft;
 
         // check if it should stop, so it doesn't go into negative values
-        if (secondsLeft < 0) {
+        if (secondsLeft < 0 && session === "work") {
+            clearInterval(countdown);
+
+            bellSound.play();
+            status = "stopped";
+            startStop.textContent = "Start";
+            cycles++;
+
+            if (cycles % 4 === 0) {
+                time = 900;
+                session = "longBreak";
+                displayTimeLeft(time);
+            }else if (session === "work") {
+                time = 300;
+                session = "shortBreak";
+                displayTimeLeft(time);
+            }else {
+                time = 1500;
+                session = "work";
+            }
+
+            return;
+        }else if (secondsLeft < 0) {
             clearInterval(countdown);
 
             bellSound.play();
             status = "stopped";
             startStop.textContent = "Start";
 
+            if (cycles % 4 === 0) {
+                time = 900;
+                session = "longBreak";
+                displayTimeLeft(time);
+            }else if (session === "work") {
+                time = 300;
+                session = "shortBreak";
+                displayTimeLeft(time);
+            }else {
+                time = 1500;
+                session = "work";
+                displayTimeLeft(time);
+            }
+
             return;
+        }else {
+            // do nothing
         }
 
          // stop the timer, if only StartStop is clicked and the timer shall resume where it left off. 
@@ -47,6 +89,9 @@ function timer(seconds) {
     }, 1000);
 }
 
+
+
+
 function displayTimeLeft(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainderSeconds = seconds % 60;
@@ -55,6 +100,7 @@ function displayTimeLeft(seconds) {
     displayTimer.textContent = displayTime;
     document.title = displayTime; 
 }
+
 
 
 startStop.addEventListener("click", () => {
@@ -74,11 +120,10 @@ startStop.addEventListener("click", () => {
 
 });
 
-
-
 buttons.forEach(button => button.addEventListener("click", () => {
     status = "stopped";
     startStop.textContent = "Start"
+    session = button.getAttribute("data-session");
     time = parseInt(button.value);
     displayTimeLeft(time);
 }));
